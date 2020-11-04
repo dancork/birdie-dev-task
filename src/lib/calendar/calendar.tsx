@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
+import chroma from 'chroma-js'
 
 import { MonthAndYearTuple } from './types'
 import CalendarMonth from './month'
@@ -9,7 +10,24 @@ const CalendarGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, min-content);
   column-gap: 80px;
-  margin: 32px 0;
+  margin: 0 0 32px 0;
+`
+
+const Min = styled.div`
+  font-size: .75rem;
+`
+
+const Max = styled(Min)`
+  grid-column: 5;
+  text-align: right;
+`
+
+const ColorScale = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 25px);
+  grid-template-rows: repeat(2, 25px);
+  margin: 32px 0 0;
+  justify-content: end;
 `
 
 interface CalendarProps {
@@ -30,16 +48,30 @@ const Calendar: React.FC<CalendarProps> = ({ start = [4, 2019], monthsToRender =
     ])
   , [start])
 
-  // extract min and max values
-  const [min, max]: [number, number] = useMemo(() =>
-    [
-      Math.min(...data.values()),
-      Math.max(...data.values())
+  // extract min and max values and create a color scale
+  const [colorScale, min, max]: [any, number, number] = useMemo(() => {
+    const min = Math.min(...data.values())
+    const max = Math.max(...data.values())
+    return [
+      chroma
+        .scale('OrRd')
+        .domain([min, max])
+        .padding(0.1)
+        .nodata('#f4f4f4'),
+      min,
+      max
     ]
-  , [data])
+  }, [data])
 
   return (
-    <CalendarContext.Provider value={{ data, selectedDate, onSelectDate, min, max }}>
+    <CalendarContext.Provider value={{ data, selectedDate, onSelectDate, colorScale }}>
+      <ColorScale>
+        {colorScale.colors(5).map((backgroundColor: string) =>
+          <div key={backgroundColor} style={{ backgroundColor }} />
+        )}
+        <Min>{min}</Min>
+        <Max>{max}</Max>
+      </ColorScale>
       <CalendarGrid>
         {monthAndYearTuples.map(([month, year]) =>
           <CalendarMonth key={`${year}-${month}`} month={month} year={year} />

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import chroma from 'chroma-js'
 import { getDate, getISODay, getWeekOfMonthWithOptions, format, isEqual } from 'date-fns/fp'
 
 import CalendarContext from './calendar-context'
@@ -52,20 +51,17 @@ const Day = styled.div.attrs<DayProps>(props => {
   }
 `
 
-const colorScale = chroma.scale('OrRd').padding(0.1).nodata('#f4f4f4')
-
 interface CalendarDayProps {
   date: Date;
 }
 
 const CalendarDay: React.FC<CalendarDayProps> = ({ date }) => {
-  const { data, selectedDate, onSelectDate, min, max } = useContext(CalendarContext)
+  const { data, selectedDate, onSelectDate, colorScale } = useContext(CalendarContext)
   const value = data.get(format('yyyy-MM-dd', date))
-  const backgroundColor = colorScale.domain([min, max])(value)
   return (
     <Day
       date={date}
-      backgroundColor={backgroundColor}
+      backgroundColor={colorScale(value)}
       isSelected={isEqual(selectedDate, date)}
       onClick={() => onSelectDate(date)}
     >

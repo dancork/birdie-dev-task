@@ -4,8 +4,7 @@ interface CalendarContextValues {
   data: Map<string, number>;
   selectedDate: Date;
   onSelectDate: (date: Date) => void;
-  min: number;
-  max: number;
+  colorScale: any;
 }
 
 const CalendarContext = React.createContext<CalendarContextValues>({} as CalendarContextValues)
