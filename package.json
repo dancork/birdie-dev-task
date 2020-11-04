@@ -7,7 +7,7 @@
     "build": "next build",
     "lint": "eslint . --ext ts,tsx",
     "lint:fix": "eslint . --ext ts,tsx --fix",
-    "start": "next start"
+    "start": "next start -p $PORT"
   },
   "license": "UNLICENSED",
   "dependencies": {
