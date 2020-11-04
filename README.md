@@ -56,7 +56,7 @@ $ ./node_modules/next/dist/bin/next start -p 1234
 
 ## Viewing The Application
 
-Locally the app will run on `localhost:3000` I have also deployed it on Heroku at [birdie-dev-task.herokuapp.com](https:birdie-dev-task.herokuapp.com).
+Locally the app will run on `localhost:3000` I have also deployed it on Heroku at [birdie-dev-task.herokuapp.com](https://birdie-dev-task.herokuapp.com).
 
 ## Potential Future Additions
 
