@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import * as R from 'ramda'
 import { getWeeksInMonth, getDaysInMonth, addDays } from 'date-fns/fp'
 import { enGB } from 'date-fns/locale'
 
@@ -49,7 +48,7 @@ const DayGrid = styled.div<{ weeks: number }>`
 `
 
 const getAllDatesInMonth = (firstDayToRender: Date): Date[] =>
-  R.range(0, getDaysInMonth(firstDayToRender)).map((value: number) => addDays(value, firstDayToRender))
+  Array(getDaysInMonth(firstDayToRender)).fill(null).map((_, value) => addDays(value, firstDayToRender))
 
 interface CalendarMonthProps {
   month: Month;
@@ -63,7 +62,7 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({ month, year }) => {
 
   return (
     <MonthGrid>
-      <MonthName>{enGB.localize.month(month)}, {year}</MonthName>
+      <MonthName>{enGB.localize.month(month - 1)}, {year}</MonthName>
       <WeekdayGrid>
       {[1, 2, 3, 4, 5, 6, 0].map(dayNo =>
         <Weekday key={dayNo}>{enGB.localize.day(dayNo, { width: 'abbreviated' })}</Weekday>

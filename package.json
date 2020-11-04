@@ -7,13 +7,12 @@
     "build": "next build",
     "lint": "eslint . --ext ts,tsx",
     "lint:fix": "eslint . --ext ts,tsx --fix",
-    "start": "next start -p $PORT"
+    "start": "next"
   },
   "license": "UNLICENSED",
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@styled-icons/ionicons-outline": "^10.18.0",
-    "add": "^2.0.6",
     "apollo-server-micro": "^2.18.2",
     "chroma-js": "^2.1.0",
     "date-fns": "^2.16.1",
@@ -24,7 +23,6 @@
     "micro-cors": "^0.1.1",
     "mysql": "^2.18.1",
     "next": "^10.0.0",
-    "ramda": "^0.27.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.2.0"

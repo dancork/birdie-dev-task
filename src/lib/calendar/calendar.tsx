@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import * as R from 'ramda'
 
 import { MonthAndYearTuple } from './types'
 import CalendarMonth from './month'
@@ -25,7 +24,7 @@ interface CalendarProps {
 // i.e. the styling might not work with more months
 const Calendar: React.FC<CalendarProps> = ({ start = [4, 2019], monthsToRender = 2, data, selectedDate, onSelectDate }) => {
   const monthAndYearTuples: MonthAndYearTuple[] = useMemo(() =>
-    R.range(0, monthsToRender).map(value => [
+    Array(monthsToRender).fill(null).map((_, value) => [
       ((start[0] + value) % 12),
       Math.floor((start[0] + value) / 12) + start[1]
     ])
