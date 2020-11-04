@@ -40,13 +40,11 @@ DB_DATABASE=
 You can use then use the following commands
 
 ```
+# Install dependencies
+$ npm i
+
 # To start the app in dev mode
 $ npm start
-
-# To validate linting rules
-$ npm run lint
-# or to also fix
-$ npm run lint:fix
 
 # To create a production build
 $ npm run build
@@ -58,9 +56,30 @@ $ ./node_modules/next/dist/bin/next start -p 1234
 
 Locally the app will run on `localhost:3000` I have also deployed it on Heroku at [birdie-dev-task.herokuapp.com](https://birdie-dev-task.herokuapp.com).
 
+## Coding Style
+
+I've setup ESLint with StandardJS config to ensure a consistent coding style. To run this use the following commands.
+
+```
+# To validate linting rules
+$ npm run lint
+
+# To validate linting rules whilst fixing those that can be
+$ npm run lint:fix
+```
+
+## Tests
+
+I have setup some basic tests using Jest. Due to time limitations I've not been able to write many, this is something I would improve if I was to spend more time on it.
+
+```
+# Run tests
+$ npm t
+```
+
 ## Potential Future Additions
 
-Currently there are no tests in the application, because I've been limited on time. I would add these using Jest and maybe also Cypress for a full end-to-end.
+Currently there are few tests in the application, because I've been limited on time. I would add more of thes and maybe also Cypress for a full end-to-end.
 
 As the data was flat, in a single table, I faked some names to make the application feel more real. I have only done this for care recipients but going forward would probably also do this for care givers.
 
