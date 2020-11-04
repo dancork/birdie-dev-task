@@ -45,7 +45,7 @@ $ npm start
 
 # To validate linting rules
 $ npm run lint
-or to also fix
+# or to also fix
 $ npm run lint:fix
 
 # To create a production build
